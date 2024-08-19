@@ -9,8 +9,8 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+\.com$/
 export const registerSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Please enter a valid email')
-    .matches(emailRegex, 'Email must include "@" and  end with ".com"')
+    .email()
+
     .required('Required'),
   phone: yup
     .string()
@@ -34,9 +34,9 @@ export const registerSchema = yup.object().shape({
     .required('Required'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .oneOf([yup.ref('password')], 'Passwords must match')
     .required('Required'),
-  file: yup
+  avatar: yup
     .mixed()
     .required('A file is required')
     .test('fileSize', 'File size is too large', (value) => {
@@ -49,5 +49,26 @@ export const registerSchema = yup.object().shape({
         value instanceof File &&
         ['image/jpeg', 'image/png'].includes(value.type)
       )
+      // .mixed()
+      // .required('A file is required')
+      // .test('fileSize', 'File size is too large', (value) => {
+      //   // Ensure value is a File object
+      //   return value && value instanceof File && value.size <= 1024 * 1024 // 1MB
+      // })
+      // .test('fileFormat', 'Unsupported format', (value) => {
+      //   return (
+      //     value &&
+      //     value instanceof File &&
+      //     ['image/jpeg', 'image/png'].includes(value.type)
+      //   )
     }),
+})
+
+export const signInSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email()
+
+    .required('Required'),
+  password: yup.string().min(5).required('Required'),
 })
