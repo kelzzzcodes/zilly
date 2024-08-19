@@ -33,7 +33,10 @@ const SignInComponent = () => {
       })
 
       alert(`Success: ${response.data.message || 'successful!'}`)
-      localStorage.setItem('userEmail', values.email)
+      console.log(response.data.data.user.email)
+
+      localStorage.setItem('userEmail', response.data.data.user.email)
+      localStorage.setItem('userToken', response.data.data.token)
 
       navigate('/dashboard')
       resetForm()
