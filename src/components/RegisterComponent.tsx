@@ -9,7 +9,7 @@ interface FormValues {
   phone: string
   name: string
   password: string
-  avatar: File | null
+  avatar: null
   localityId: string
   last_ip: string
   device_type: string
@@ -50,9 +50,7 @@ const RegisterComponent = () => {
       })
 
       alert(`Success: ${response.data.message || 'Registration successful!'}`)
-      localStorage.setItem('userEmail', values.email)
-
-      navigate('/dashboard')
+      navigate('/signin')
       resetForm()
     } catch (error) {
       if (axios.isAxiosError(error)) {

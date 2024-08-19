@@ -4,7 +4,7 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/
 
 const phoneRegex = /^\+234\d{10}$/
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+\.com$/
+
 
 export const registerSchema = yup.object().shape({
   email: yup

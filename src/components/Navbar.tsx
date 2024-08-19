@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { navbarLinks } from '../constants'
 
@@ -23,12 +22,20 @@ const Navbar = () => {
       </div>
 
       {userEmail ? (
-        <button
-          onClick={handleLogout}
-          className="md:mr-20 px-4 py-2 bg-red-600 rounded-md text-white text-lg font-bold"
-        >
-          Logout
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            className="px-4 py-2 bg-black rounded-md text-white text-lg font-bold"
+            to={'/dashboard'}
+          >
+            Dashboard
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="md:mr-20 px-4 py-2 bg-red-600 rounded-md text-white text-lg font-bold"
+          >
+            Logout
+          </button>
+        </div>
       ) : (
         <Link
           to={'/signIn'}
